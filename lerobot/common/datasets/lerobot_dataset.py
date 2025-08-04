@@ -724,6 +724,7 @@ class LeRobotDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx) -> dict:
         item = self.hf_dataset[idx]
         ep_idx = item["episode_index"].item()
+        print(f"ep_idx: {ep_idx}")
 
         query_indices = None
         if self.delta_indices is not None:
