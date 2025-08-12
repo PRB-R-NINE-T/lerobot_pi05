@@ -643,6 +643,11 @@ class LeRobotDataset(torch.utils.data.Dataset):
     @property
     def num_frames(self) -> int:
         """Number of frames in selected episodes."""
+        if self.hf_dataset is not None:
+            print(f"len self.hf_dataset: {len(self.hf_dataset)}")
+        else:
+            print(f"self.hf_dataset is None")
+            print(f"self.meta.total_frames: {self.meta.total_frames}")
         return len(self.hf_dataset) if self.hf_dataset is not None else self.meta.total_frames
 
     @property
@@ -723,6 +728,7 @@ class LeRobotDataset(torch.utils.data.Dataset):
         return self.num_frames
 
     def __getitem__(self, idx) -> dict:
+        print(f"idx: {idx}")
         item = self.hf_dataset[idx]
         ep_idx = item["episode_index"].item()
         print(f"ep_idx: {ep_idx}")
