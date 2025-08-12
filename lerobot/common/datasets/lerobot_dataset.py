@@ -670,7 +670,6 @@ class LeRobotDataset(torch.utils.data.Dataset):
             return get_hf_features_from_features(self.features)
 
     def _get_query_indices(self, idx: int, ep_idx: int) -> tuple[dict[str, list[int | bool]]]:
-        print(f"ep_idx: {ep_idx} idx: {idx}")
         ep_idx = max(0, min(ep_idx, len(self.episode_data_index["from"]) - 1))
         ep_start = self.episode_data_index["from"][ep_idx]
         ep_end = self.episode_data_index["to"][ep_idx]
@@ -734,7 +733,6 @@ class LeRobotDataset(torch.utils.data.Dataset):
         print(f"idx: {idx}")
         item = self.hf_dataset[idx]
         ep_idx = item["episode_index"].item()
-        print(f"ep_idx: {ep_idx}")
 
         query_indices = None
         if self.delta_indices is not None:
