@@ -507,6 +507,7 @@ class LeRobotDataset(torch.utils.data.Dataset):
         # Check timestamps
         timestamps = torch.tensor(self.hf_dataset["timestamp"]).numpy()
         episode_indices = torch.tensor(self.hf_dataset["episode_index"]).numpy()
+
         print(f"episode_indices: {episode_indices}")
         ep_data_index_np = {k: t.numpy() for k, t in self.episode_data_index.items()}
         print(f"self.ep_data_index_np: {ep_data_index_np}")
